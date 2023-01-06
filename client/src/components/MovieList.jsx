@@ -2,15 +2,12 @@ import React from 'react';
 // import React, { Component } from "react";
 import MovieListItem from './MovieListItem.jsx';
 
-const MovieList = (props) => {
-  // props.movies is the array of movie objects
-  const { movies } = props;
+const MovieList = ({ movies }) => {
 
   return (
     <ul>
       {movies.map((item) => {
-        // console.log(item);
-        return <MovieListItem movie={item.title} />
+        return <MovieListItem key={item.id} movie={item.title} />
       })}
     </ul>
   )

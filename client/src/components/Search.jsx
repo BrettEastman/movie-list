@@ -1,31 +1,15 @@
 import React from 'react';
 
-const Search = ({ movies }) => {
-  const [getQuery, setGetQuery] = React.useState('');
-
-  const searchMovies = function(input) {
-    for (var movie of movies) {
-      if (input === movie.title) {
-        console.log('true');
-      }
-    }
-    console.log('false');
-  };
-
-  const handleQ = (event) => {
-    event.preventDefault();
-    setGetQuery(event.target.value);
-    searchMovies(getQuery);
-  };
+const Search = ({ handleChange, value, handleSearch }) => {
 
   return (
     <div>
       <input
         type="search"
         placeholder="Search here"
-        onChange={handleQ}
-        value={getQuery} />
-      <button type="submit">Search</button>
+        onChange={handleChange}
+        value={value} />
+      <button onClick={handleSearch}>Search</button>
     </div>
   )
 };
