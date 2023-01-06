@@ -2,6 +2,7 @@ import React from 'react';
 // import React, { Component } from "react";
 import MovieList from './MovieList.jsx';
 import MovieListItem from './MovieListItem.jsx';
+import Search from './Search.jsx';
 
 const App = () => {
   let movies = [
@@ -13,9 +14,15 @@ const App = () => {
   ];
 
   return (
-    <div>Movies
-     <MovieList movies={movies} />
-    </div>
+    <div>
+      <div>Movies
+        <Search movies={movies}/>
+      </div>
+      <div>
+        <MovieList movies={movies} />
+      </div>
+   </div>
+
   );
 };
 

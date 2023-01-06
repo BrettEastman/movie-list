@@ -3,7 +3,7 @@ import React from 'react';
 
 const MovieListItem = (props) => {
   const { movie } = props;
-  console.log(movie);
+  // console.log(movie);
 
   return (
     <li>{movie}</li>
