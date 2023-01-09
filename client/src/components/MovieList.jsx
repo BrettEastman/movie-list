@@ -5,11 +5,15 @@ import MovieListItem from './MovieListItem.jsx';
 const MovieList = ({ movies }) => {
 
   return (
-    <ul>
-      {movies.map((item) => {
-        return <MovieListItem key={item.id} movie={item.title} />
-      })}
-    </ul>
+    <div>
+      {movies.length === 0 ?
+      (<div>no movie by that name found</div>) :
+      (<ul>
+        {movies.map((item) => {
+          return <MovieListItem key={item.id} movie={item.title} />
+        })}
+      </ul>)}
+    </div>
   )
 };
 

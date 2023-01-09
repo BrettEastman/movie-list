@@ -18,19 +18,12 @@ const App = () => {
   let filtered = [...movies].filter((movie) => {
     return movie.title.toLowerCase().includes(query.toLowerCase())
   })
-
-  const searchMovies = function(input) {
-    setQuery(input);
-  };
-
-  const handleQ = (event) => {
-    setQuery(event.target.value);
-  };
+  console.log('in App filtered movies are', filtered)
 
   return (
     <div>
       <div>Movies
-        <Search handleChange={handleQ} value={query} handleSearch={searchMovies}/>
+        <Search setQuery={setQuery}/>
       </div>
       <div>
         <MovieList movies={filtered} />
