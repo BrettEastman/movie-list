@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Search = ({ handleChange, value, handleSearch }) => {
+  const [input, setInput] = useState('');
 
   return (
     <div>
       <input
         type="search"
         placeholder="Search here"
-        onChange={handleChange}
-        value={value} />
-      <button onClick={handleSearch}>Search</button>
+        onChange={(event) => setInput(event.target.value)}
+        value={input} />
+      <button onClick={() => handleSearch(input)}>Search</button>
     </div>
   )
 };

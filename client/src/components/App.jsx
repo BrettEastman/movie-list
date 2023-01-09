@@ -19,8 +19,8 @@ const App = () => {
     return movie.title.toLowerCase().includes(query.toLowerCase())
   })
 
-  const searchMovies = function() {
-
+  const searchMovies = function(input) {
+    setQuery(input);
   };
 
   const handleQ = (event) => {
