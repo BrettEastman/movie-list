@@ -31,6 +31,7 @@ app.post('/movies', (req, res) => {
     if (err) {
       res.sendStatus(400);
     } else {
+      console.log('result: ', result)
       res.status(201).json(result);
     }
   });

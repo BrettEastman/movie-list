@@ -9,14 +9,38 @@ import axios from 'axios';
 export const App = () => { // example of named import
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    axios.get('/movies')
-      .then(({ data }) => {
-        setMovies(data);
+
+  const updateMovies = function(movie) {
+    setMovies([...movies, {id: 100, title: movie, watched: 1}]);
+  }
+
+  const createMovie = function(movie) {
+    axios.post('/movies', {title: movie, watched: 1})
+      .then(function(res) {
+        console.log('received: ', res);
+        getMovies().then(({ data }) => {
+          setMovies(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       })
-      .catch((err) => {
+      .catch(function(err) {
         console.log(err);
       });
+  }
+
+  const getMovies = function() {
+    return axios.get('/movies')
+  }
+
+  useEffect(() => {
+    getMovies().then(({ data }) => {
+      setMovies(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }, []);
 
   // write function to add movie with id first
@@ -33,7 +57,7 @@ export const App = () => { // example of named import
     <div>
         <h1>Movies</h1>
       <div>
-        <AddInput setMovies={setMovies}/>
+        <AddInput handleAdd={createMovie}/>
       </div>
       <div>
         <Search setQuery={setQuery}/>
