@@ -21,11 +21,11 @@ module.exports = {
       }
     });
   },
-  changeWatched: function(obj, callback) {
-    let queryStr = 'UPDATE movies SET watched=? WHERE title=?';
+  changeWatched: function(data, id, callback) {
+    let queryStr = 'UPDATE movies SET watched=? WHERE id=?';
     let watchNum;
-    obj.watched === 1 ? watchNum = 0 : watchNum = 1;
-    db.connection.query(queryStr, [watchNum, obj.title], (err, result) => {
+    data.watched === 1 ? watchNum = 0 : watchNum = 1;
+    db.connection.query(queryStr, [watchNum, id], (err, result) => {
       if (err) {
         callback(err, null);
       } else {

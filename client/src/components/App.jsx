@@ -20,9 +20,10 @@ export const App = () => { // example of named import
 
   // useEffect - will run once component has been mounted takes in cb and dependency - tells react when to re-run
   useEffect(() => {
-    getMovies().then(({ data }) => {
-      setMovies(data);
-    })
+    getMovies()
+      .then(({ data }) => {
+        setMovies(data);
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -31,10 +32,10 @@ export const App = () => { // example of named import
   const createMovie = function (movie) { // for any type of post, put, or delete request, you want to do a get request after
     axios.post('/movies', { title: movie, watched: 1 })
       .then(function (res) {
-        console.log('received: ', res);
-        getMovies().then(({ data }) => {
-          setMovies(data);
-        })
+        getMovies()
+          .then(({ data }) => {
+            setMovies(data);
+          })
           .catch((err) => {
             console.log(err);
           });
@@ -45,12 +46,14 @@ export const App = () => { // example of named import
   }
 
   const changeWatched = function(obj) {
-    axios.put('/movies', { title: obj.title, watched: obj.seen })
+    const { id, title, watched } = obj;
+
+    axios.put(`/movies/${id}`, { title, watched })
       .then(() => {
-        console.log('movie changed');
-        getMovies().then(({ data }) => {
-          setMovies(data);
-        })
+        getMovies()
+          .then(({ data }) => {
+            setMovies(data);
+          })
           .catch((err) => {
             console.log(err);
           });
@@ -59,8 +62,6 @@ export const App = () => { // example of named import
         console.log(err);
       });
   }
-  // write function to add movie with id first
-  // stack?
 
   let filtered = [...movies].filter((movie) => {
     return movie.title.toLowerCase().includes(query.toLowerCase())

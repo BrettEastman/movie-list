@@ -1,16 +1,16 @@
 import React from 'react';
 
-const MovieListItem = ({ title, seen, changeWatched }) => {
-  // const { movie } = props;
+const MovieListItem = ({ movie, changeWatched }) => {
+  const { id, title, watched } = movie;
 
   return (
     <div>
-      {seen === 1 ?
+      {watched === 1 ?
       (<li>{title}
-        <button style={{backgroundColor: 'green', color: 'white', fontWeight: '700'}} onClick={() => {changeWatched({title, seen})}}>watched</button>
+        <button style={{backgroundColor: 'green', color: 'white', fontWeight: '700'}} onClick={() => {changeWatched({id, title, watched})}}>watched</button>
       </li>) :
       (<li>{title}
-        <button style={{backgroundColor: 'white', color: 'green', fontWeight: '700'}} onClick={() => {changeWatched({title, seen})}}>watched</button>
+        <button style={{backgroundColor: 'white', color: 'green', fontWeight: '700'}} onClick={() => {changeWatched({id, title, watched})}}>watched</button>
       </li>)}
     </div>
   )

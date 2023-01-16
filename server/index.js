@@ -35,8 +35,8 @@ app.post('/movies', (req, res) => {
   });
 });
 
-app.put('/movies', (req, res) => {
-  models.changeWatched(req.body, (err, result) => {
+app.put('/movies/:id', (req, res) => {
+  models.changeWatched(req.body, req.params.id, (err, result) => {
     if (err) {
       res.sendStatus(400);
     } else {

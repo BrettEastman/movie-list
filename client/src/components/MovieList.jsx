@@ -9,7 +9,7 @@ const MovieList = ({ movies, changeWatched }) => {
       (<div>no movie by that name found</div>) :
       (<ul>
         {movies.map((item) => {
-          return <MovieListItem key={item.id} title={item.title} seen={item.watched} changeWatched={changeWatched}/>
+          return <MovieListItem key={item.id} movie={item} changeWatched={changeWatched}/>
         })}
       </ul>)}
     </div>
