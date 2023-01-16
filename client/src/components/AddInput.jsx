@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 const AddInput = ({ handleAdd }) => {
+
   const [input, setInput] = useState('');
 
   return (

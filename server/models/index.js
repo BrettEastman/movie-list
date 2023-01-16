@@ -20,5 +20,17 @@ module.exports = {
         callback(null, result);
       }
     });
+  },
+  changeWatched: function(obj, callback) {
+    let queryStr = 'UPDATE movies SET watched=? WHERE title=?';
+    let watchNum;
+    obj.watched === 1 ? watchNum = 0 : watchNum = 1;
+    db.connection.query(queryStr, [watchNum, obj.title], (err, result) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, result);
+      }
+    });
   }
 };

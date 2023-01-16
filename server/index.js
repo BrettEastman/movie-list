@@ -10,7 +10,7 @@ const db = require('./db');
 const models = require('./models');
 
 
-// CONTROLLERS
+// CONTROLLERS you get to see your data for the last time before it enters the database
 
 // app.get
 app.get('/movies', (req, res) => {
@@ -26,12 +26,20 @@ app.get('/movies', (req, res) => {
 
 // app.post
 app.post('/movies', (req, res) => {
-  console.log('req.body: ', req.body);
   models.create(req.body, (err, result) => {
     if (err) {
       res.sendStatus(400);
     } else {
-      console.log('result: ', result)
+      res.status(201).json(result);
+    }
+  });
+});
+
+app.put('/movies', (req, res) => {
+  models.changeWatched(req.body, (err, result) => {
+    if (err) {
+      res.sendStatus(400);
+    } else {
       res.status(201).json(result);
     }
   });
